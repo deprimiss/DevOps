@@ -1,0 +1,31 @@
+<div class="message-container">
+    <h2>Отправка сообщения</h2>
+    
+    <div class="input-group">
+      <textarea 
+        [(ngModel)]="messageText" 
+        placeholder="Введите ваше сообщение..."
+        rows="4"
+        class="message-input"
+      ></textarea>
+    </div>
+  
+    <button 
+      (click)="sendMessage()" 
+      [disabled]="!messageText.trim()"
+      class="send-button"
+    >
+      {{  'Отправить' }}
+    </button>
+  
+<br>
+    <button 
+    (click)="fetchData()" 
+    class="action-button secondary"
+  >
+    Получить историю сообщений </button>  
+    <div *ngIf="additionalResponse" class="response">
+      <h4>Результат запроса:</h4>
+      <p>{{ additionalResponse }}</p>
+    </div>
+  </div>
