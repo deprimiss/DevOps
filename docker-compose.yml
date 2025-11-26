@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/DockerFile 
+    ports:
+      - "5207:5207"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:5207
+    networks:
+      - default
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/DockerFile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    environment:
+      - NGINX_HOST=frontend
+    networks:
+      - default
+
+
+      

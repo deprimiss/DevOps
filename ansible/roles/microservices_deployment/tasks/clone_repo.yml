@@ -1,0 +1,16 @@
+---
+- name: Ensure deployment directory exists
+  file:
+    path: "{{ deployment_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Clone application repository
+  git:
+    repo: "{{ repository_url }}"
+    dest: "{{ deployment_path }}"
+    version: "{{ repository_branch }}"
+    force: yes
+    recursive: yes
+  register: git_clone_result
+

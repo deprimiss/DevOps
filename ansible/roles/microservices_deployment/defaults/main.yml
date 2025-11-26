@@ -1,0 +1,9 @@
+---
+repository_url: "https://github.com/deprimiss/DevOps.git"
+repository_branch: "main"
+
+deployment_path: "/opt/devops"
+
+
+docker_compose_path: "{{ deployment_path }}/docker-compose.yml"
+

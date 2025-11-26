@@ -1,0 +1,17 @@
+---
+- name: Start application services
+  command: docker compose up -d --build
+  args:
+    chdir: "{{ deployment_path }}"
+  tags:
+    - start
+    - deploy
+
+- name: Stop application services
+  command: docker compose down
+  args:
+    chdir: "{{ deployment_path }}"
+  tags:
+    - stop
+    - never
+

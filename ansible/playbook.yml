@@ -1,0 +1,9 @@
+---
+- name: Deploy Microservices Application
+  hosts: application_servers
+  become: true
+  
+  roles:
+    - role: microservices_deployment
+
+

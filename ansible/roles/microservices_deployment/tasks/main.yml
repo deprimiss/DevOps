@@ -1,0 +1,16 @@
+---
+- name: Install Docker and Dependencies
+  import_tasks: install_docker.yml
+  tags:
+    - deploy
+    - install
+
+- name: Setup Application Repository
+  import_tasks: clone_repo.yml
+  tags:
+    - deploy
+    - clone
+
+- name: Manage Docker Services
+  import_tasks: manage_services.yml
+
