@@ -2,6 +2,18 @@ pipeline {
     agent any
 
     stages {
+        stage('Установка Ansible') {
+            steps {
+                echo 'Установка Ansible на сервере Jenkins...'
+                sh '''
+                    sudo apt-get update -y
+                    sudo apt-get install -y ansible python3 python3-pip
+                    echo "Ansible установлен:"
+                    ansible-playbook --version
+                '''
+            }
+        }
+        
         stage('Настройка инфраструктуры') {
             steps {
                 echo 'Выполнение настройки инфраструктуры (Установка Docker и получение исходного кода)...'
