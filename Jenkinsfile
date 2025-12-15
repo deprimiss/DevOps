@@ -5,15 +5,15 @@ pipeline {
         stage('Настройка инфраструктуры') {
             steps {
                 echo 'Выполнение настройки инфраструктуры (Установка Docker и получение исходного кода)...'
-                withCredentials([usernamePassword(credentialsId: 'ansible-ssh-user', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'deprimiss', usernameVariable: 'deprimiss', passwordVariable: 'qwerty')]) {
                     sh '''
                         export ANSIBLE_CONFIG=${WORKSPACE}/ansible/ansible.cfg
                         cd ansible
                         ansible-playbook playbook.yml \
                             -i inventory/hosts \
                             -t install,clone \
-                            -u ${SSH_USERNAME} \
-                            --extra-vars "ansible_ssh_pass=${SSH_PASSWORD} ansible_become_pass=${SSH_PASSWORD}"
+                            -u ${deprimiss} \
+                            --extra-vars "ansible_ssh_pass=${qwerty} ansible_become_pass=${qwerty}"
                     '''
                 }
             }
@@ -22,15 +22,15 @@ pipeline {
         stage('Развертывание сервисов') {
             steps {
                 echo 'Развертывание сервисов приложения (Docker Compose up)...'
-                withCredentials([usernamePassword(credentialsId: 'ansible-ssh-user', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'deprimiss', usernameVariable: 'deprimiss', passwordVariable: 'qwerty')]) {
                     sh '''
                         export ANSIBLE_CONFIG=${WORKSPACE}/ansible/ansible.cfg
                         cd ansible
                         ansible-playbook playbook.yml \
                             -i inventory/hosts \
                             -t start \
-                            -u ${SSH_USERNAME} \
-                            --extra-vars "ansible_ssh_pass=${SSH_PASSWORD} ansible_become_pass=${SSH_PASSWORD}"
+                            -u ${deprimiss} \
+                            --extra-vars "ansible_ssh_pass=${qwerty} ansible_become_pass=${qwerty}"
                     '''
                 }
             }
