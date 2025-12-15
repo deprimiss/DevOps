@@ -9,7 +9,7 @@ pipeline {
                     sh '''
                         export ANSIBLE_CONFIG=${WORKSPACE}/ansible/ansible.cfg
                         cd ansible
-                        ansible-playbook playbook.yml \
+                        playbook.yml \
                             -i inventory/hosts \
                             -t install,clone \
                             -u ${deprimiss} \
@@ -26,7 +26,7 @@ pipeline {
                     sh '''
                         export ANSIBLE_CONFIG=${WORKSPACE}/ansible/ansible.cfg
                         cd ansible
-                        ansible-playbook playbook.yml \
+                        playbook.yml \
                             -i inventory/hosts \
                             -t start \
                             -u ${deprimiss} \
